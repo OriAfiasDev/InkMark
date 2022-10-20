@@ -1,17 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IColor } from '../types/IColor';
+import { Color } from './Color';
 
 interface ColorContainerProps {
   title: string;
+  colors: IColor[];
 }
 
 export const ColorContainer: React.FC<ColorContainerProps> = ({
   title,
-  children,
+  colors,
 }) => (
   <section>
     <StyledTitle>{title}</StyledTitle>
-    <StyledColorContainer>{children}</StyledColorContainer>
+    <StyledColorContainer>
+      {colors.map(({ id, ...rest }) => (
+        <Color key={id} {...rest} toggleIsFavorite={console.log} />
+      ))}
+    </StyledColorContainer>
   </section>
 );
 
