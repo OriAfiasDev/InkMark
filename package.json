@@ -1,7 +1,7 @@
 {
-  "name": "chrome-test",
+  "name": "hex-marks",
   "version": "4.3.5",
-  "description": "this is just a chrome-test",
+  "description": "A Bookmark manager for the hex colors",
   "license": "MIT",
   "repository": {
     "type": "git",
