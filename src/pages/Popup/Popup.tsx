@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ColorContainer } from './components/ColorContainer';
-import './Popup.css';
 import { allColors } from './seed/colors';
 
 const Popup = () => {
@@ -16,11 +15,11 @@ const Popup = () => {
         colors={allColors.filter((color) => color.isMostCommon)}
       />
       <ColorContainer
-        title="solid"
+        title="all solids"
         colors={allColors.filter((color) => color.type === 'solid')}
       />
       <ColorContainer
-        title="gradients"
+        title="all gradients"
         colors={allColors.filter((color) => color.type === 'gradient')}
       />
     </PopupContainer>
