@@ -36,7 +36,7 @@ export const Color: React.FC<ColorProps> = ({
   return (
     <>
       <StyledColor color={color} onClick={copyToClipboard}>
-        <StyledCopiedIcon color={color} isCopied={isCopied} />
+        {isCopied && <StyledCopiedIcon color={color} />}
         <FavoriteIcon
           color={color}
           isFavorite={isFavorite}
@@ -47,12 +47,10 @@ export const Color: React.FC<ColorProps> = ({
   );
 };
 
-const StyledCopiedIcon = styled(MdDone)<{ color: string; isCopied: boolean }>`
+const StyledCopiedIcon = styled(MdDone)<{ color: string }>`
   color: ${({ color }) => color};
   height: 24px;
   width: 24px;
-  opacity: ${({ isCopied }) => (isCopied ? 1 : 0)};
-  transition: opacity 300ms ease;
   filter: invert(100%);
 `;
 
