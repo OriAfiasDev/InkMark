@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { ColorContainer } from './components/ColorContainer';
+import { ColorSection } from './components/ColorSection';
 import { allColors } from './seed/colors';
 
 const colorsFromGoogleSync = async (): Promise<string[]> => {
@@ -19,11 +19,11 @@ const Popup = () => {
 
   return (
     <PopupContainer>
-      <ColorContainer
+      <ColorSection
         title="favorites"
         colors={allColors.filter((color) => color.isFavorite)}
       />
-      <ColorContainer
+      <ColorSection
         title="stored"
         colors={stored.map((color) => ({
           //TODO:
@@ -34,15 +34,15 @@ const Popup = () => {
           isFavorite: false,
         }))}
       />
-      <ColorContainer
+      <ColorSection
         title="most common"
         colors={allColors.filter((color) => color.isMostCommon)}
       />
-      <ColorContainer
+      <ColorSection
         title="all solids"
         colors={allColors.filter((color) => color.type === 'solid')}
       />
-      <ColorContainer
+      <ColorSection
         title="all gradients"
         colors={allColors.filter((color) => color.type === 'gradient')}
       />
