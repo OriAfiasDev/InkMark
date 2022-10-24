@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ColorSection } from './components/ColorSection';
+import { Picker } from './components/Picker';
 import { allColors } from './seed/colors';
 
 const colorsFromGoogleSync = async (): Promise<string[]> => {
   const { savedColors } = await chrome.storage.local.get('savedColors');
   return savedColors || [];
+};
+
+const resetColorsFromGoogleSync = async () => {
+  await chrome.storage.local.set({ savedColors: [] });
+  window.location.reload();
 };
 
 const Popup = () => {
@@ -19,6 +25,7 @@ const Popup = () => {
 
   return (
     <PopupContainer>
+      <button onClick={resetColorsFromGoogleSync}>reset</button>
       <ColorSection
         title="favorites"
         colors={allColors.filter((color) => color.isFavorite)}
@@ -46,6 +53,7 @@ const Popup = () => {
         title="all gradients"
         colors={allColors.filter((color) => color.type === 'gradient')}
       />
+      <Picker />
     </PopupContainer>
   );
 };
