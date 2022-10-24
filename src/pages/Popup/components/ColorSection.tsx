@@ -26,7 +26,7 @@ export const ColorSection: React.FC<ColorContainerProps> = ({
   </section>
 );
 
-const StyledTitle = styled.p`
+export const StyledTitle = styled.p`
   font-family: PP Neue Machina;
   font-weight: 400;
   font-size: 14px;
