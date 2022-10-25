@@ -2,25 +2,21 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MdDone } from 'react-icons/md';
 import { FavoriteIcon } from './FavoriteIcon';
+import { IColor } from '../types/IColor';
 
 interface ColorProps {
-  color?: string;
-  isFavorite?: boolean;
-  toggleIsFavorite: () => void;
+  color: IColor;
+  toggleIsFavorite: (colorId: string) => void;
 }
 
-export const Color: React.FC<ColorProps> = ({
-  color = '#fff',
-  isFavorite = false,
-  toggleIsFavorite,
-}) => {
+export const Color: React.FC<ColorProps> = ({ color, toggleIsFavorite }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copyToClipboard = useCallback(
     (e) => {
       e.preventDefault();
       if (e.target === e.currentTarget) {
-        navigator.clipboard.writeText(color);
+        navigator.clipboard.writeText(color.color || '#fff');
         setIsCopied(true);
       }
     },
@@ -35,12 +31,12 @@ export const Color: React.FC<ColorProps> = ({
 
   return (
     <>
-      <StyledColor color={color} onClick={copyToClipboard}>
-        {isCopied && <StyledCopiedIcon color={color} />}
+      <StyledColor color={color.color || '#fff'} onClick={copyToClipboard}>
+        {isCopied && <StyledCopiedIcon color={color.color || '#fff'} />}
         <FavoriteIcon
-          color={color}
-          isFavorite={isFavorite}
-          toggleFavorite={toggleIsFavorite}
+          color={color.color || '#fff'}
+          isFavorite={color.isFavorite}
+          toggleFavorite={() => toggleIsFavorite(color.id)}
         />
       </StyledColor>
     </>

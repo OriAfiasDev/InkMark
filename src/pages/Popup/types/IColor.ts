@@ -1,7 +1,7 @@
 export interface IColor {
   id: string;
   color?: string;
-  isFavorite?: boolean;
+  isFavorite: boolean;
   type: 'solid' | 'gradient';
   count: number;
 }

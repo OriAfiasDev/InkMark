@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { toggleFavorite } from '../../../utils/syncStorage';
 import { IColor } from '../types/IColor';
 import { Color } from './Color';
 
@@ -7,6 +8,11 @@ interface ColorContainerProps {
   title: string;
   colors: IColor[];
 }
+
+const toggleIsFavorite = (colorId: string) => {
+  toggleFavorite(colorId);
+  window.location.reload();
+};
 
 export const ColorSection: React.FC<ColorContainerProps> = ({
   title,
@@ -18,8 +24,12 @@ export const ColorSection: React.FC<ColorContainerProps> = ({
       <NoColorsText>no colors yet</NoColorsText>
     ) : (
       <StyledColorContainer>
-        {colors.map(({ id, ...rest }) => (
-          <Color key={id} {...rest} toggleIsFavorite={console.log} />
+        {colors.map((color) => (
+          <Color
+            key={color.id}
+            color={color}
+            toggleIsFavorite={toggleIsFavorite}
+          />
         ))}
       </StyledColorContainer>
     )}

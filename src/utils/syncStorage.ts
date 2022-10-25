@@ -2,6 +2,8 @@ import { v4 as uuid } from 'uuid';
 import { IColor } from '../pages/Popup/types/IColor';
 
 export const addNewColor = (color: string) => {
+  if (!color) return;
+
   const newColor: IColor = {
     id: uuid(),
     color,

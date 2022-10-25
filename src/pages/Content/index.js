@@ -1,5 +1,3 @@
-import { childIdBackground } from '../Background';
-
 var clickedEl = null;
 
 document.addEventListener('contextmenu', function (event) {
@@ -10,13 +8,17 @@ const findElementColor = () => {
   if (!clickedEl) return null;
 
   const { color, background, backgroundColor } = getComputedStyle(clickedEl);
-  return { color, bg: background || backgroundColor };
+  return {
+    color: color || '#fff',
+    bg: background || backgroundColor || '#eee',
+  };
 };
 
 chrome.runtime.onMessage.addListener(function (request, _, sendResponse) {
   if (request.includes('getClickedEl')) {
     const { color, bg } = findElementColor();
 
-    sendResponse(request.includes(childIdBackground) ? bg : color);
+    return sendResponse(request.includes('CHILD_ID_BACKGROUND') ? bg : color);
   }
+  sendResponse(null);
 });

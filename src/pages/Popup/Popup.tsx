@@ -27,6 +27,10 @@ const Popup = () => {
         title="favorites"
         colors={allColors.filter((color) => color.isFavorite)}
       />
+      <ColorSection
+        title="stored favorites"
+        colors={stored.filter((color) => color.isFavorite)}
+      />
       <ColorSection title="stored" colors={stored} />
       <ColorSection
         title="most common"

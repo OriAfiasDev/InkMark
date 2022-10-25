@@ -1,6 +1,7 @@
-import { addNewColor } from '../../utils';
-export const childIdBackground = 'CHILD_ID_BACKGROUND';
-export const childIdColor = 'CHILD_ID_COLOR';
+import { addNewColor } from '../../utils/syncStorage';
+
+const childIdBackground = 'CHILD_ID_BACKGROUND';
+const childIdColor = 'CHILD_ID_COLOR';
 
 const getColorsFromElement = ({ menuItemId, frameId }, tab) => {
   if (![childIdBackground, childIdColor].includes(menuItemId)) return;
