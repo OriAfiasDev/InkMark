@@ -5,12 +5,12 @@ import { Picker } from './components/Picker';
 import { allColors } from './seed/colors';
 
 const colorsFromGoogleSync = async (): Promise<string[]> => {
-  const { savedColors } = await chrome.storage.local.get('savedColors');
+  const { savedColors } = await chrome.storage.sync.get('savedColors');
   return savedColors || [];
 };
 
 const resetColorsFromGoogleSync = async () => {
-  await chrome.storage.local.set({ savedColors: [] });
+  await chrome.storage.sync.set({ savedColors: [] });
   window.location.reload();
 };
 

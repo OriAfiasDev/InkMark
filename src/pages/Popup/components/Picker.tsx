@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { StyledTitle } from './ColorSection';
 
 const saveColorToLocalStorage = (color: string) => {
-  chrome.storage.local.get('savedColors', (data) => {
+  chrome.storage.sync.get('savedColors', (data) => {
     const savedColors = data.savedColors || [];
     savedColors.push(color);
-    chrome.storage.local.set({ savedColors });
+    chrome.storage.sync.set({ savedColors });
   });
 };
 

@@ -2,8 +2,8 @@ export const childIdBackground = 'CHILD_ID_BACKGROUND';
 export const childIdColor = 'CHILD_ID_COLOR';
 
 const saveOnSyncStorage = (savedColor) => {
-  chrome.storage.local.get({ savedColors: [] }, ({ savedColors }) => {
-    chrome.storage.local.set({ savedColors: [...savedColors, savedColor] });
+  chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
+    chrome.storage.sync.set({ savedColors: [...savedColors, savedColor] });
   });
 };
 
