@@ -34,7 +34,7 @@ const Popup = () => {
       <ColorSection title="stored" colors={stored} />
       <ColorSection
         title="most common"
-        colors={allColors.sort((a, b) => b.count - a.count).slice(0, 4)}
+        colors={[...stored].sort((a, b) => b.count - a.count).slice(0, 4)}
       />
       <ColorSection
         title="all solids"

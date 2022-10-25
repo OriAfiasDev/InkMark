@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MdDone } from 'react-icons/md';
 import { FavoriteIcon } from './FavoriteIcon';
 import { IColor } from '../types/IColor';
+import { incrementUsage } from '../../../utils/syncStorage';
 
 interface ColorProps {
   color: IColor;
@@ -18,6 +19,7 @@ export const Color: React.FC<ColorProps> = ({ color, toggleIsFavorite }) => {
       if (e.target === e.currentTarget) {
         navigator.clipboard.writeText(color.color || '#fff');
         setIsCopied(true);
+        incrementUsage(color.id);
       }
     },
     [color]
