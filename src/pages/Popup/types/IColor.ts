@@ -3,5 +3,5 @@ export interface IColor {
   color?: string;
   isFavorite?: boolean;
   type: 'solid' | 'gradient';
-  isMostCommon: boolean;
+  count: number;
 }

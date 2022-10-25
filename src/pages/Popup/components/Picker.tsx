@@ -1,21 +1,14 @@
 import React, { useCallback } from 'react';
 import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
+import { addNewColor } from '../../../utils/syncStorage';
 import { StyledTitle } from './ColorSection';
-
-const saveColorToLocalStorage = (color: string) => {
-  chrome.storage.sync.get('savedColors', (data) => {
-    const savedColors = data.savedColors || [];
-    savedColors.push(color);
-    chrome.storage.sync.set({ savedColors });
-  });
-};
 
 export const Picker = () => {
   const [color, setColor] = React.useState('#fff');
 
   const saveColor = useCallback(() => {
-    saveColorToLocalStorage(color);
+    addNewColor(color);
     window.location.reload();
   }, [color]);
 

@@ -1,17 +1,12 @@
+import { addNewColor } from '../../utils';
 export const childIdBackground = 'CHILD_ID_BACKGROUND';
 export const childIdColor = 'CHILD_ID_COLOR';
-
-const saveOnSyncStorage = (savedColor) => {
-  chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
-    chrome.storage.sync.set({ savedColors: [...savedColors, savedColor] });
-  });
-};
 
 const getColorsFromElement = ({ menuItemId, frameId }, tab) => {
   if (![childIdBackground, childIdColor].includes(menuItemId)) return;
   const eventId = `getClickedEl-${menuItemId}`;
 
-  chrome.tabs.sendMessage(tab.id, eventId, { frameId }, saveOnSyncStorage);
+  chrome.tabs.sendMessage(tab.id, eventId, { frameId }, addNewColor);
 };
 
 chrome.contextMenus.removeAll(function () {

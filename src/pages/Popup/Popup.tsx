@@ -1,25 +1,22 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { getColors, resetColors } from '../../utils/syncStorage';
 import { ColorSection } from './components/ColorSection';
 import { Picker } from './components/Picker';
 import { allColors } from './seed/colors';
-
-const colorsFromGoogleSync = async (): Promise<string[]> => {
-  const { savedColors } = await chrome.storage.sync.get('savedColors');
-  return savedColors || [];
-};
+import { IColor } from './types/IColor';
 
 const resetColorsFromGoogleSync = async () => {
-  await chrome.storage.sync.set({ savedColors: [] });
+  await resetColors();
   window.location.reload();
 };
 
 const Popup = () => {
-  const [stored, setStored] = React.useState<string[]>([]);
+  const [stored, setStored] = React.useState<IColor[]>([]);
 
   useEffect(() => {
-    colorsFromGoogleSync().then((data) => {
-      setStored(data);
+    getColors().then((colors) => {
+      setStored(colors);
     });
   }, []);
 
@@ -30,20 +27,10 @@ const Popup = () => {
         title="favorites"
         colors={allColors.filter((color) => color.isFavorite)}
       />
-      <ColorSection
-        title="stored"
-        colors={stored.map((color) => ({
-          //TODO:
-          id: 'masldkmsalmdl',
-          isMostCommon: false,
-          type: 'solid',
-          color,
-          isFavorite: false,
-        }))}
-      />
+      <ColorSection title="stored" colors={stored} />
       <ColorSection
         title="most common"
-        colors={allColors.filter((color) => color.isMostCommon)}
+        colors={allColors.sort((a, b) => b.count - a.count).slice(0, 4)}
       />
       <ColorSection
         title="all solids"
