@@ -7,10 +7,18 @@ document.addEventListener('contextmenu', function (event) {
 const findElementColor = () => {
   if (!clickedEl) return null;
 
-  const { color, background, backgroundColor } = getComputedStyle(clickedEl);
+  const { color, background, backgroundColor, backgroundImage } =
+    getComputedStyle(clickedEl);
+  let bg = null;
+  if (backgroundImage.includes('linear-gradient')) {
+    bg = backgroundImage;
+  } else {
+    bg = backgroundColor || background;
+  }
+
   return {
     color: color || '#fff',
-    bg: background || backgroundColor || '#eee',
+    bg,
   };
 };
 
