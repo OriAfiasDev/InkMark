@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { MdDone } from 'react-icons/md';
 import { FavoriteIcon } from './FavoriteIcon';
 import { IColor } from '../types/IColor';
-import { incrementUsage } from '../../../utils/syncStorage';
+import { incrementUsage, removeColor } from '../../../utils/syncStorage';
+import { BsTrash } from 'react-icons/bs';
+import { icon } from '../globalStyles/Icon';
 
 interface ColorProps {
   color: IColor;
@@ -40,6 +42,10 @@ export const Color: React.FC<ColorProps> = ({ color, toggleIsFavorite }) => {
           isFavorite={color.isFavorite}
           toggleFavorite={() => toggleIsFavorite(color.id)}
         />
+        <TrashIcon
+          color={color.color || '#fff'}
+          onClick={() => removeColor(color.id)}
+        />
       </StyledColor>
     </>
   );
@@ -50,6 +56,10 @@ const StyledCopiedIcon = styled(MdDone)<{ color: string }>`
   height: 24px;
   width: 24px;
   filter: invert(100%);
+`;
+
+const TrashIcon = styled(BsTrash)<{ color: string }>`
+  ${({ color }) => icon(color, 'left')}
 `;
 
 const StyledColor = styled.div<{ color: string }>`
