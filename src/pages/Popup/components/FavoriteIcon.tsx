@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import styled from 'styled-components';
+import { icon } from '../globalStyles/Icon';
 
 interface FavoriteIconProps {
   color: string;
@@ -20,33 +21,9 @@ export const FavoriteIcon: React.FC<FavoriteIconProps> = ({
   );
 
 const EmptyHeart = styled(AiOutlineHeart)<{ color: string }>`
-  color: ${({ color }) => color};
-  height: 10px;
-  width: 10px;
-  filter: invert(100%);
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
-  transition: height 300ms ease, width 300ms ease;
-
-  &:hover {
-    height: 16px;
-    width: 16px;
-  }
+  ${({ color }) => icon(color, 'right')}
 `;
 
 const FullHeart = styled(AiFillHeart)<{ color: string }>`
-  color: ${({ color }) => color};
-  height: 10px;
-  width: 10px;
-  filter: invert(100%);
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
-  transition: height 300ms ease, width 300ms ease;
-
-  &:hover {
-    height: 16px;
-    width: 16px;
-  }
+  ${({ color }) => icon(color, 'right')}
 `;
