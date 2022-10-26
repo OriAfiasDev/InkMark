@@ -9,11 +9,6 @@ interface ColorContainerProps {
   colors: IColor[];
 }
 
-const toggleIsFavorite = (colorId: string) => {
-  toggleFavorite(colorId);
-  window.location.reload();
-};
-
 export const ColorSection: React.FC<ColorContainerProps> = ({
   title,
   colors,
@@ -28,7 +23,7 @@ export const ColorSection: React.FC<ColorContainerProps> = ({
           <Color
             key={color.id}
             color={color}
-            toggleIsFavorite={toggleIsFavorite}
+            toggleIsFavorite={() => toggleFavorite(color.id)}
           />
         ))}
       </StyledColorContainer>

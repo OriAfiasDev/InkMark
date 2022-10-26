@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { getColors, resetColors } from '../../utils/syncStorage';
+import {
+  getColors,
+  listenToColors,
+  resetColors,
+} from '../../utils/syncStorage';
 import { ColorSection } from './components/ColorSection';
 import { Picker } from './components/Picker';
 import { IColor } from './types/IColor';
-
-const resetColorsFromGoogleSync = async () => {
-  await resetColors();
-  window.location.reload();
-};
 
 const Popup = () => {
   const [colors, setColors] = React.useState<IColor[]>([]);
@@ -17,11 +16,12 @@ const Popup = () => {
     getColors().then((colors) => {
       setColors(colors);
     });
+    listenToColors(setColors);
   }, []);
 
   return (
     <PopupContainer>
-      <button onClick={resetColorsFromGoogleSync}>reset</button>
+      <button onClick={resetColors}>reset</button>
       <ColorSection
         title="favorites"
         colors={colors.filter((color) => color.isFavorite)}

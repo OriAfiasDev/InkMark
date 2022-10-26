@@ -17,9 +17,18 @@ export const addNewColor = (color: string) => {
   });
 };
 
-export const getColors = async () => {
+export const getColors = async (): Promise<IColor[]> => {
   const { savedColors } = await chrome.storage.sync.get('savedColors');
   return savedColors || [];
+};
+
+export const listenToColors = (callback: (newValue: IColor[]) => void) => {
+  chrome.storage.onChanged.addListener(function (changes, namespace) {
+    if (namespace !== 'sync') return;
+    for (let [_, { newValue }] of Object.entries(changes)) {
+      callback(newValue);
+    }
+  });
 };
 
 export const resetColors = () => {

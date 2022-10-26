@@ -1,16 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useState } from 'react';
 import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
 import { addNewColor } from '../../../utils/syncStorage';
 import { StyledTitle } from './ColorSection';
 
 export const Picker = () => {
-  const [color, setColor] = React.useState('#fff');
-
-  const saveColor = useCallback(() => {
-    addNewColor(color);
-    window.location.reload();
-  }, [color]);
+  const [color, setColor] = useState('#fff');
 
   return (
     <div>
@@ -22,7 +17,7 @@ export const Picker = () => {
           default: { picker: { width: '100%' } },
         }}
       />
-      <SaveButton onClick={saveColor}>Save</SaveButton>
+      <SaveButton onClick={() => addNewColor(color)}>Save</SaveButton>
     </div>
   );
 };
