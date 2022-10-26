@@ -2,8 +2,8 @@ import { css } from 'styled-components';
 
 export const icon = (color: string = '#fff', side: 'right' | 'left') => css`
   color: ${color};
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   filter: invert(100%);
   position: absolute;
   bottom: 6px;
@@ -11,7 +11,7 @@ export const icon = (color: string = '#fff', side: 'right' | 'left') => css`
   transition: height 300ms ease, width 300ms ease;
 
   &:hover {
-    height: 16px;
-    width: 16px;
+    height: 20px;
+    width: 20px;
   }
 `;
