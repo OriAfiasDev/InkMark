@@ -3,14 +3,12 @@ import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
 import { addNewColor } from '../../../utils/syncStorage';
 import { colorScheme } from '../globalStyles/colorScheme';
-import { StyledTitle } from './ColorSection';
 
 export const Picker = () => {
   const [color, setColor] = useState('#fff');
 
   return (
-    <div>
-      <StyledTitle>Add Color</StyledTitle>
+    <>
       <ChromePicker
         onChange={(color) => setColor(color.hex)}
         color={color}
@@ -19,7 +17,7 @@ export const Picker = () => {
         }}
       />
       <SaveButton onClick={() => addNewColor(color)}>Save</SaveButton>
-    </div>
+    </>
   );
 };
 

@@ -6,9 +6,10 @@ import {
   resetColors,
 } from '../../utils/syncStorage';
 import { colorScheme } from './globalStyles/colorScheme';
-import { ColorSection } from './components/ColorSection';
 import { Picker } from './components/Picker';
 import { IColor } from './types/IColor';
+import { ColorList } from './components/ColorList';
+import { Section } from './components/Section';
 
 const Popup = () => {
   const [colors, setColors] = React.useState<IColor[]>([]);
@@ -23,28 +24,32 @@ const Popup = () => {
   return (
     <PopupContainer>
       <button onClick={resetColors}>reset</button>
-      <ColorSection
-        title="favorites"
-        colors={colors.filter((color) => color.isFavorite)}
-      />
+      <Section isOpenDefault title="favorites">
+        <ColorList colors={colors.filter((color) => color.isFavorite)} />
+      </Section>
 
-      <ColorSection
-        title="most common"
-        colors={[...colors].sort((a, b) => b.count - a.count).slice(0, 4)}
-      />
+      <Section isOpenDefault title="most common">
+        <ColorList
+          colors={[...colors].sort((a, b) => b.count - a.count).slice(0, 4)}
+        />
+      </Section>
 
-      <ColorSection title="all colors" colors={colors} />
+      <Section title="all colors">
+        <ColorList colors={colors} />
+      </Section>
 
-      <ColorSection
-        title="only solids"
-        colors={colors.filter((color) => color.type === 'solid')}
-      />
+      <Section title="only solids">
+        <ColorList colors={colors.filter((color) => color.type === 'solid')} />
+      </Section>
 
-      <ColorSection
-        title="only gradients"
-        colors={colors.filter((color) => color.type === 'gradient')}
-      />
-      <Picker />
+      <Section title="only gradients">
+        <ColorList
+          colors={colors.filter((color) => color.type === 'gradient')}
+        />
+      </Section>
+      <Section title="add color">
+        <Picker />
+      </Section>
     </PopupContainer>
   );
 };
