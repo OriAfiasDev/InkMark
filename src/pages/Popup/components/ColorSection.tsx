@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { toggleFavorite } from '../../../utils/syncStorage';
 import { colorScheme } from '../globalStyles/colorScheme';
 import { IColor } from '../types/IColor';
-import { Color } from './Color';
-import { Dropdown } from './Dropdown';
+import { ColorItem } from './ColorItem';
 
 interface ColorContainerProps {
   title: string;
@@ -22,13 +20,7 @@ export const ColorSection: React.FC<ColorContainerProps> = ({
     ) : (
       <StyledColorContainer>
         {colors.map((color) => (
-          <Dropdown>
-            <Color
-              key={color.id}
-              color={color}
-              toggleIsFavorite={() => toggleFavorite(color.id)}
-            />
-          </Dropdown>
+          <ColorItem key={color.id} color={color} />
         ))}
       </StyledColorContainer>
     )}
