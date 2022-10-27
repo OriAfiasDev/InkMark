@@ -19,8 +19,8 @@ export const ColorSection: React.FC<ColorContainerProps> = ({
       <NoColorsText>no colors yet</NoColorsText>
     ) : (
       <StyledColorContainer>
-        {colors.map((color) => (
-          <ColorItem key={color.id} color={color} />
+        {colors.map((color, i) => (
+          <ColorItem key={color.id} color={color} index={i} />
         ))}
       </StyledColorContainer>
     )}
