@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { toggleFavorite } from '../../../utils/syncStorage';
+import { colorScheme } from '../globalStyles/colorScheme';
 import { IColor } from '../types/IColor';
-import { Color } from './Color';
+import { ColorItem } from './ColorItem';
 
 interface ColorContainerProps {
   title: string;
@@ -19,12 +19,8 @@ export const ColorSection: React.FC<ColorContainerProps> = ({
       <NoColorsText>no colors yet</NoColorsText>
     ) : (
       <StyledColorContainer>
-        {colors.map((color) => (
-          <Color
-            key={color.id}
-            color={color}
-            toggleIsFavorite={() => toggleFavorite(color.id)}
-          />
+        {colors.map((color, i) => (
+          <ColorItem key={color.id} color={color} index={i} />
         ))}
       </StyledColorContainer>
     )}
@@ -35,7 +31,7 @@ export const StyledTitle = styled.p`
   font-family: PP Neue Machina;
   font-weight: 400;
   font-size: 14px;
-  color: #707482;
+  color: ${colorScheme.dark.text};
   padding-left: 4px;
   text-transform: uppercase;
 `;

@@ -1,51 +1,34 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdDone } from 'react-icons/md';
-import { FavoriteIcon } from './FavoriteIcon';
 import { IColor } from '../types/IColor';
-import { incrementUsage, removeColor } from '../../../utils/syncStorage';
-import { BsTrash } from 'react-icons/bs';
-import { icon } from '../globalStyles/Icon';
+import { incrementUsage } from '../../../utils/syncStorage';
 
-interface ColorProps {
+interface ColorBoxProps {
   color: IColor;
-  toggleIsFavorite: (colorId: string) => void;
 }
 
-export const Color: React.FC<ColorProps> = ({ color, toggleIsFavorite }) => {
+export const copyToClipboard = (color: string, colorId: string) => {
+  navigator.clipboard.writeText(color);
+  incrementUsage(colorId);
+};
+
+export const ColorBox: React.FC<ColorBoxProps> = ({ color }) => {
   const [isCopied, setIsCopied] = useState(false);
 
-  const copyToClipboard = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (e.target === e.currentTarget) {
-        navigator.clipboard.writeText(color.color || '#fff');
-        setIsCopied(true);
-        incrementUsage(color.id);
-      }
-    },
-    [color]
-  );
+  const handleClick = () => {
+    copyToClipboard(color.color, color.id);
+    setIsCopied(true);
 
-  useEffect(() => {
-    if (isCopied) {
-      setTimeout(() => setIsCopied(false), 2000);
-    }
-  }, [isCopied]);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
+  };
 
   return (
     <>
-      <StyledColor color={color.color || '#fff'} onClick={copyToClipboard}>
-        {isCopied && <StyledCopiedIcon color={color.color || '#fff'} />}
-        <FavoriteIcon
-          color={color.color || '#fff'}
-          isFavorite={color.isFavorite}
-          toggleFavorite={() => toggleIsFavorite(color.id)}
-        />
-        <TrashIcon
-          color={color.color || '#fff'}
-          onClick={() => removeColor(color.id)}
-        />
+      <StyledColor color={color.color} onClick={handleClick}>
+        {isCopied && <StyledCopiedIcon color={color.color} />}
       </StyledColor>
     </>
   );
@@ -58,15 +41,10 @@ const StyledCopiedIcon = styled(MdDone)<{ color: string }>`
   filter: invert(100%);
 `;
 
-const TrashIcon = styled(BsTrash)<{ color: string }>`
-  ${({ color }) => icon(color, 'left')}
-`;
-
 const StyledColor = styled.div<{ color: string }>`
   position: relative;
   height: 45px;
   width: 60px;
-  border: 1px solid #e5e6ea;
   background: ${({ color }) => color};
   border-radius: 6px;
   cursor: pointer;
