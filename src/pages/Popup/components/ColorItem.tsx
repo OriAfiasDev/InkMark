@@ -68,6 +68,14 @@ const DropdownItem = styled.p<{ bold?: boolean }>`
 
   &:hover {
     background-color: ${colorScheme.dark.backgroundSecondaryHover};
+    &:first-child {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    &:last-child {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
   }
 `;
 
