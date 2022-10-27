@@ -5,6 +5,7 @@ import {
   listenToColors,
   resetColors,
 } from '../../utils/syncStorage';
+import { colorScheme } from './globalStyles/colorScheme';
 import { ColorSection } from './components/ColorSection';
 import { Picker } from './components/Picker';
 import { IColor } from './types/IColor';
@@ -52,6 +53,7 @@ const PopupContainer = styled.div`
   padding: 10px;
   height: 340px;
   overflow: hidden auto;
+  background-color: ${colorScheme.dark.background};
 `;
 
 export default Popup;

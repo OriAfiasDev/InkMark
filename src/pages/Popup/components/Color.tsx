@@ -66,7 +66,6 @@ const StyledColor = styled.div<{ color: string }>`
   position: relative;
   height: 45px;
   width: 60px;
-  border: 1px solid #e5e6ea;
   background: ${({ color }) => color};
   border-radius: 6px;
   cursor: pointer;
