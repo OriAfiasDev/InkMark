@@ -17,8 +17,8 @@ export const Section: React.FC<SectionProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(isOpenDefault);
   return (
     <section>
-      <StyledTitle>
-        <Collapse isOpen={isOpen} onClick={() => setIsOpen((prev) => !prev)} />
+      <StyledTitle onClick={() => setIsOpen((prev) => !prev)}>
+        <Collapse isOpen={isOpen} />
         {title}
       </StyledTitle>
       {isOpen && children}
@@ -27,6 +27,7 @@ export const Section: React.FC<SectionProps> = ({
 };
 
 export const StyledTitle = styled.p`
+  cursor: pointer;
   font-family: PP Neue Machina;
   font-weight: 400;
   font-size: 14px;
@@ -37,7 +38,6 @@ export const StyledTitle = styled.p`
 `;
 
 const Collapse = styled(VscChevronRight)<{ isOpen: boolean }>`
-  cursor: pointer;
   transform: rotate(${({ isOpen }) => (isOpen ? '90deg' : '0deg')});
   transition: transform 300ms ease-in-out;
   padding: 2px;
