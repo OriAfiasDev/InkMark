@@ -17,7 +17,11 @@ export const ColorItem: React.FC<PropsWithChildren<ColorItemProps>> = ({
   <DropdownContainer>
     <ColorBox color={color} />
     <DropdownContentContainer side={index % 4 > 1 ? 'right' : 'left'}>
-      <DropdownItem bold onClick={() => copyToClipboard(color.color, color.id)}>
+      <DropdownItem
+        bold
+        align="center"
+        onClick={() => copyToClipboard(color.color, color.id)}
+      >
         {color.color}
       </DropdownItem>
       <Divider />
@@ -34,7 +38,7 @@ export const ColorItem: React.FC<PropsWithChildren<ColorItemProps>> = ({
   </DropdownContainer>
 );
 
-const arrowPeak = 15;
+const arrowPeak = 22.5;
 
 const DropdownContentContainer = styled.div<{ side: 'left' | 'right' }>`
   display: none;
@@ -42,7 +46,7 @@ const DropdownContentContainer = styled.div<{ side: 'left' | 'right' }>`
   background-color: ${colorScheme.dark.backgroundSecondary};
   border-radius: 8px;
   top: 0;
-  ${({ side }) => side}: 70px;
+  ${({ side }) => side}: 75px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -58,13 +62,17 @@ const DropdownContentContainer = styled.div<{ side: 'left' | 'right' }>`
         )`};
 `;
 
-const DropdownItem = styled.p<{ bold?: boolean }>`
+const DropdownItem = styled.p<{
+  bold?: boolean;
+  align?: 'left' | 'center';
+}>`
   color: ${colorScheme.dark.text};
   padding: 8px 16px;
   margin: 2px 0;
   display: block;
   cursor: pointer;
   font-weight: ${({ bold }) => (bold ? '800' : '400')};
+  text-align: ${({ align }) => align || 'left'};
 
   &:hover {
     background-color: ${colorScheme.dark.backgroundSecondaryHover};
