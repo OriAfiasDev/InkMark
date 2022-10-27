@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import {
-  getColors,
-  listenToColors,
-  resetColors,
-} from '../../utils/syncStorage';
+import { getColors, listenToColors } from '../../utils/syncStorage';
 import { colorScheme } from './globalStyles/colorScheme';
 import { Picker } from './components/Picker';
 import { IColor } from './types/IColor';
@@ -23,7 +19,6 @@ const Popup = () => {
 
   return (
     <PopupContainer>
-      <button onClick={resetColors}>reset</button>
       <Section isOpenDefault title="favorites">
         <ColorList colors={colors.filter((color) => color.isFavorite)} />
       </Section>
