@@ -5,7 +5,8 @@ const childIdColor = 'CHILD_ID_COLOR';
 const childIdFill = 'CHILD_ID_FILL';
 
 const getColorsFromElement = ({ menuItemId, frameId }, tab) => {
-  if (![childIdBackground, childIdColor].includes(menuItemId)) return;
+  if (![childIdBackground, childIdColor, childIdFill].includes(menuItemId))
+    return;
   const eventId = `getClickedEl-${menuItemId}`;
 
   chrome.tabs.sendMessage(tab.id, eventId, { frameId }, addNewColor);
