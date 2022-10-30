@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { colorScheme } from '../globalStyles/colorScheme';
 import { VscChevronRight } from 'react-icons/vsc';
@@ -15,6 +15,11 @@ export const Section: React.FC<SectionProps> = ({
   children,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(isOpenDefault);
+
+  useEffect(() => {
+    setIsOpen(isOpenDefault);
+  }, [isOpenDefault]);
+
   return (
     <section>
       <StyledTitle onClick={() => setIsOpen((prev) => !prev)}>
