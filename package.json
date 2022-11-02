@@ -1,11 +1,11 @@
 {
-  "name": "hex-marks",
-  "version": "4.3.5",
-  "description": "A Bookmark manager for the hex colors",
+  "name": "ink-mark",
+  "version": "0.0.1",
+  "description": "A Bookmark manager for colors you've met online",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OriAfiasDev/chrome-test.git"
+    "url": "https://github.com/OriAfiasDev/InkMark.git"
   },
   "scripts": {
     "build": "node utils/build.js",
