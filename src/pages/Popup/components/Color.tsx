@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MdDone } from 'react-icons/md';
 import { IColor } from '../types/IColor';
 import { incrementUsage } from '../../../utils/syncStorage';
+import { colorScheme } from '../globalStyles/colorScheme';
 
 interface ColorBoxProps {
   color: IColor;
@@ -51,4 +52,5 @@ const StyledColor = styled.div<{ color: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid ${colorScheme.dark.text}4d;
 `;
