@@ -10,6 +10,7 @@ const getColorsFromElement = ({ menuItemId, frameId }, tab) => {
   const eventId = `getClickedEl-${menuItemId}`;
 
   chrome.tabs.sendMessage(tab.id, eventId, { frameId }, addNewColor);
+  chrome.tabs.sendMessage(tab.id, eventId, { frameId }, addNewColor);
 };
 
 chrome.contextMenus.removeAll(function () {

@@ -13,7 +13,9 @@ export const addNewColor = (color: string) => {
   };
 
   chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
-    chrome.storage.sync.set({ savedColors: [...savedColors, newColor] });
+    const exists = savedColors.find((c: IColor) => c.color === color);
+    if (!exists)
+      chrome.storage.sync.set({ savedColors: [...savedColors, newColor] });
   });
 };
 
