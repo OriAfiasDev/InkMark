@@ -3,7 +3,6 @@
   "permissions": ["contextMenus", "tabs", "storage", "activeTab"],
   "name": "HexMarks",
   "description": "A Bookmark manager for the hex colors",
-  "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {
     "default_popup": "popup.html",
