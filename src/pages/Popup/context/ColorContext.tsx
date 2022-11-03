@@ -1,10 +1,37 @@
-import { useEffect, useMemo, useState } from 'react';
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  PropsWithChildren,
+  useMemo,
+} from 'react';
 import { getColors, listenToColors } from '../../../utils/syncStorage';
 import { IColor } from '../types/IColor';
 
 type Tags = { [tagName: string]: IColor[] };
 
-export const useColors = () => {
+interface ColorContextProps {
+  colors: IColor[];
+  favorites: IColor[];
+  mostCommon: IColor[];
+  solids: IColor[];
+  gradients: IColor[];
+  tags: Tags;
+}
+
+const initialContext: ColorContextProps = {
+  colors: [],
+  favorites: [],
+  mostCommon: [],
+  solids: [],
+  gradients: [],
+  tags: {},
+};
+
+const ColorContext = createContext<ColorContextProps>(initialContext);
+
+const ColorProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
   const [colors, setColors] = useState<IColor[]>([]);
 
   useEffect(() => {
@@ -44,5 +71,15 @@ export const useColors = () => {
     }, {});
   }, [colors]);
 
-  return { colors, favorites, mostCommon, solids, gradients, tags };
+  return (
+    <ColorContext.Provider
+      value={{ colors, favorites, mostCommon, solids, gradients, tags }}
+    >
+      {children}
+    </ColorContext.Provider>
+  );
 };
+
+export const useColors = () => useContext(ColorContext);
+
+export default ColorProvider;
