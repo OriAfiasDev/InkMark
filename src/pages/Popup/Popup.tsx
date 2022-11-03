@@ -7,7 +7,8 @@ import { Section } from './components/Section';
 import { useColors } from './hooks/useColors';
 
 const Popup = () => {
-  const { colors, favorites, gradients, mostCommon, solids } = useColors();
+  const { colors, favorites, gradients, mostCommon, solids, tags } =
+    useColors();
 
   return (
     <PopupContainer>
@@ -18,6 +19,12 @@ const Popup = () => {
       <Section isOpenDefault={mostCommon.length > 0} title="most common">
         <ColorList colors={mostCommon} />
       </Section>
+
+      {Object.keys(tags).map((tag) => (
+        <Section key={tag} title={tag}>
+          <ColorList colors={tags[tag]} />
+        </Section>
+      ))}
 
       <Section title="all colors">
         <ColorList colors={colors} />

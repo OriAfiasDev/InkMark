@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { getColors, listenToColors } from '../../../utils/syncStorage';
 import { IColor } from '../types/IColor';
 
+type Tags = { [tagName: string]: IColor[] };
+
 export const useColors = () => {
   const [colors, setColors] = useState<IColor[]>([]);
 
@@ -32,5 +34,15 @@ export const useColors = () => {
     [colors]
   );
 
-  return { colors, favorites, mostCommon, solids, gradients };
+  const tags = useMemo(() => {
+    return colors.reduce<Tags>((tags, currentColor) => {
+      currentColor.tags.forEach((tag) => {
+        if (!tags[tag]) tags[tag] = [];
+        tags[tag].push(currentColor);
+      });
+      return tags;
+    }, {});
+  }, [colors]);
+
+  return { colors, favorites, mostCommon, solids, gradients, tags };
 };
