@@ -1,10 +1,12 @@
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { removeColor, toggleFavorite } from '../../../utils/syncStorage';
-import { useColors } from '../context/ColorContext';
+import {
+  removeColor,
+  toggleFavorite,
+  toggleTag,
+} from '../../../utils/syncStorage';
 import { colorScheme } from '../globalStyles/colorScheme';
 import { IColor } from '../types/IColor';
-import { Autocomplete } from './Autocomplete';
 import { ColorBox, copyToClipboard } from './Color';
 
 interface ColorItemProps {
@@ -16,8 +18,6 @@ export const ColorItem: React.FC<PropsWithChildren<ColorItemProps>> = ({
   color,
   index,
 }) => {
-  const [tagsQuery, setTagsQuery] = useState('');
-  const { tags } = useColors();
   return (
     <DropdownContainer>
       <ColorBox color={color} />
@@ -39,14 +39,15 @@ export const ColorItem: React.FC<PropsWithChildren<ColorItemProps>> = ({
         <DropdownItem onClick={() => removeColor(color.id)}>
           Remove color
         </DropdownItem>
-        <DropdownItem>
-          <Autocomplete
-            query={tagsQuery}
-            setQuery={setTagsQuery}
-            suggestions={Object.keys(tags)}
-            currentValues={color.tags}
-            colorId={color.id}
-          />
+        <DropdownItem
+          onClick={() =>
+            toggleTag(
+              color.id,
+              color.tags.length === 0 ? prompt('add tag') || '' : color.tags[0]
+            )
+          }
+        >
+          {color.tags.length === 0 ? 'Add' : `Remove "${color.tags[0]}"`} tag
         </DropdownItem>
       </DropdownContentContainer>
     </DropdownContainer>
