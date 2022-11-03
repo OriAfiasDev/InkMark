@@ -10,6 +10,7 @@ export const addNewColor = (color: string) => {
     isFavorite: false,
     type: color.includes('linear-gradient') ? 'gradient' : 'solid',
     count: 0,
+    tags: [],
   };
 
   chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
