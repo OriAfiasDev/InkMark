@@ -1,8 +1,10 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import styled from 'styled-components';
 import { removeColor, toggleFavorite } from '../../../utils/syncStorage';
+import { useColors } from '../context/ColorContext';
 import { colorScheme } from '../globalStyles/colorScheme';
 import { IColor } from '../types/IColor';
+import { Autocomplete } from './Autocomplete';
 import { ColorBox, copyToClipboard } from './Color';
 
 interface ColorItemProps {
@@ -13,30 +15,43 @@ interface ColorItemProps {
 export const ColorItem: React.FC<PropsWithChildren<ColorItemProps>> = ({
   color,
   index,
-}) => (
-  <DropdownContainer>
-    <ColorBox color={color} />
-    <DropdownContentContainer side={index % 4 > 1 ? 'right' : 'left'}>
-      <DropdownItem
-        bold
-        align="center"
-        onClick={() => copyToClipboard(color.color, color.id)}
-      >
-        {color.color}
-      </DropdownItem>
-      <Divider />
-      <DropdownItem onClick={() => copyToClipboard(color.color, color.id)}>
-        Copy to clipbord
-      </DropdownItem>
-      <DropdownItem onClick={() => toggleFavorite(color.id)}>
-        {color.isFavorite ? 'Remove from ' : 'Add to '}Favorites
-      </DropdownItem>
-      <DropdownItem onClick={() => removeColor(color.id)}>
-        Remove color
-      </DropdownItem>
-    </DropdownContentContainer>
-  </DropdownContainer>
-);
+}) => {
+  const [tagsQuery, setTagsQuery] = useState('');
+  const { tags } = useColors();
+  return (
+    <DropdownContainer>
+      <ColorBox color={color} />
+      <DropdownContentContainer side={index % 4 > 1 ? 'right' : 'left'}>
+        <DropdownItem
+          bold
+          align="center"
+          onClick={() => copyToClipboard(color.color, color.id)}
+        >
+          {color.color}
+        </DropdownItem>
+        <Divider />
+        <DropdownItem onClick={() => copyToClipboard(color.color, color.id)}>
+          Copy to clipbord
+        </DropdownItem>
+        <DropdownItem onClick={() => toggleFavorite(color.id)}>
+          {color.isFavorite ? 'Remove from ' : 'Add to '}Favorites
+        </DropdownItem>
+        <DropdownItem onClick={() => removeColor(color.id)}>
+          Remove color
+        </DropdownItem>
+        <DropdownItem>
+          <Autocomplete
+            query={tagsQuery}
+            setQuery={setTagsQuery}
+            suggestions={Object.keys(tags)}
+            currentValues={color.tags}
+            colorId={color.id}
+          />
+        </DropdownItem>
+      </DropdownContentContainer>
+    </DropdownContainer>
+  );
+};
 
 const arrowPeak = 22.5;
 
