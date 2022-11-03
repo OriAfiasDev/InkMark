@@ -63,3 +63,20 @@ export const incrementUsage = (id: string) => {
     });
   });
 };
+
+export const toggleTag = (id: string, tag: string) => {
+  chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
+    chrome.storage.sync.set({
+      savedColors: savedColors.map((color: IColor) =>
+        color.id === id
+          ? {
+              ...color,
+              tags: color.tags.includes(tag)
+                ? color.tags.filter((t) => t !== tag)
+                : [...color.tags, tag],
+            }
+          : color
+      ),
+    });
+  });
+};
