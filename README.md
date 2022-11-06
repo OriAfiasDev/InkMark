@@ -1,5 +1,5 @@
 <p align='center'><img src="src/assets/img/icon-128.png" width="64"/></p>
-<p align='center'><strong>InkMark</strong></p>
+<h2 align='center'><strong>InkMark</strong></h2>
 <br/>
 <p align='center'>
 InkMark is an <strong>open-source</strong> MIT-licensed <strong>browser extension</strong> designed to help you keep your colors lined up.<br/>InkMark will <strong>store</strong> and help you manage colors you've gathered from across the web, mark them as <strong>favorites</strong>, <strong>order</strong> them by usage or type, and help you <strong>tag</strong> them as you wish.
