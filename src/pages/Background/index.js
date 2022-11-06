@@ -16,7 +16,7 @@ const getColorsFromElement = ({ menuItemId, frameId }, tab) => {
 chrome.contextMenus.removeAll(function () {
   chrome.contextMenus.create({
     id: 'root',
-    title: 'Hex marks',
+    title: 'InkMark',
     contexts: ['all'],
   });
 
