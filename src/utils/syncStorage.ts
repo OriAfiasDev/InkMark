@@ -65,6 +65,7 @@ export const incrementUsage = (id: string) => {
 };
 
 export const toggleTag = (id: string, tag: string) => {
+  if (!tag) return;
   chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
     chrome.storage.sync.set({
       savedColors: savedColors.map((color: IColor) =>
