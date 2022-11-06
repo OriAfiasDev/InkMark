@@ -4,6 +4,21 @@ document.addEventListener('contextmenu', function (event) {
   clickedEl = event.target;
 });
 
+const isTransparent = (color) => {
+  if (color.startsWith('rgba')) {
+    const [, , , a] = color.split(',');
+    return a === ' 0)';
+  }
+  if (color.startsWith('hsla')) {
+    const [, , , a] = color.split(',');
+    return a === ' 0)';
+  }
+  if (color.startsWith('#')) {
+    return color === '#00000000';
+  }
+  return false;
+};
+
 const findElementColor = (colorType) => {
   if (!clickedEl) return null;
 
@@ -21,13 +36,16 @@ const findElementColor = (colorType) => {
       const pathEl = clickedEl.querySelector('path');
       return pathEl ? getComputedStyle(pathEl).fill : fill;
     default:
+      alert('Sorry, No color found');
       return null;
   }
 };
 
 chrome.runtime.onMessage.addListener(function (request, _, sendResponse) {
   if (request.includes('getClickedEl')) {
-    return sendResponse(findElementColor(request));
+    const color = findElementColor(request);
+    if (color && !isTransparent(color)) return sendResponse(color);
+    else alert('Sorry, No color found');
   }
   sendResponse(null);
 });
