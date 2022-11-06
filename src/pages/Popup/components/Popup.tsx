@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colorScheme } from './globalStyles/colorScheme';
-import { Picker } from './components/Picker';
-import { ColorList } from './components/ColorList';
-import { Section } from './components/Section';
-import { useColors } from './hooks/useColors';
+import { colorScheme } from '../globalStyles/colorScheme';
+import { Picker } from './Picker';
+import { ColorList } from './ColorList';
+import { Section } from './Section';
+import { useColors } from '../context/ColorContext';
 
 const Popup = () => {
-  const { colors, favorites, gradients, mostCommon, solids } = useColors();
+  const { colors, favorites, gradients, mostCommon, solids, tags } =
+    useColors();
 
   return (
     <PopupContainer>
@@ -18,6 +19,12 @@ const Popup = () => {
       <Section isOpenDefault={mostCommon.length > 0} title="most common">
         <ColorList colors={mostCommon} />
       </Section>
+
+      {Object.keys(tags).map((tag) => (
+        <Section key={tag} title={tag}>
+          <ColorList colors={tags[tag]} />
+        </Section>
+      ))}
 
       <Section title="all colors">
         <ColorList colors={colors} />

@@ -4,4 +4,5 @@ export interface IColor {
   isFavorite: boolean;
   type: 'solid' | 'gradient';
   count: number;
+  tags: string[];
 }

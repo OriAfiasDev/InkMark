@@ -10,6 +10,7 @@ export const addNewColor = (color: string) => {
     isFavorite: false,
     type: color.includes('linear-gradient') ? 'gradient' : 'solid',
     count: 0,
+    tags: [],
   };
 
   chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
@@ -58,6 +59,23 @@ export const incrementUsage = (id: string) => {
     chrome.storage.sync.set({
       savedColors: savedColors.map((color: IColor) =>
         color.id === id ? { ...color, count: color.count + 1 } : color
+      ),
+    });
+  });
+};
+
+export const toggleTag = (id: string, tag: string) => {
+  chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
+    chrome.storage.sync.set({
+      savedColors: savedColors.map((color: IColor) =>
+        color.id === id
+          ? {
+              ...color,
+              tags: color.tags.includes(tag)
+                ? color.tags.filter((t) => t !== tag)
+                : [...color.tags, tag],
+            }
+          : color
       ),
     });
   });

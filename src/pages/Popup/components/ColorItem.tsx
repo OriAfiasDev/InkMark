@@ -1,6 +1,10 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { removeColor, toggleFavorite } from '../../../utils/syncStorage';
+import {
+  removeColor,
+  toggleFavorite,
+  toggleTag,
+} from '../../../utils/syncStorage';
 import { colorScheme } from '../globalStyles/colorScheme';
 import { IColor } from '../types/IColor';
 import { ColorBox, copyToClipboard } from './Color';
@@ -13,30 +17,42 @@ interface ColorItemProps {
 export const ColorItem: React.FC<PropsWithChildren<ColorItemProps>> = ({
   color,
   index,
-}) => (
-  <DropdownContainer>
-    <ColorBox color={color} />
-    <DropdownContentContainer side={index % 4 > 1 ? 'right' : 'left'}>
-      <DropdownItem
-        bold
-        align="center"
-        onClick={() => copyToClipboard(color.color, color.id)}
-      >
-        {color.color}
-      </DropdownItem>
-      <Divider />
-      <DropdownItem onClick={() => copyToClipboard(color.color, color.id)}>
-        Copy to clipbord
-      </DropdownItem>
-      <DropdownItem onClick={() => toggleFavorite(color.id)}>
-        {color.isFavorite ? 'Remove from ' : 'Add to '}Favorites
-      </DropdownItem>
-      <DropdownItem onClick={() => removeColor(color.id)}>
-        Remove color
-      </DropdownItem>
-    </DropdownContentContainer>
-  </DropdownContainer>
-);
+}) => {
+  return (
+    <DropdownContainer>
+      <ColorBox color={color} />
+      <DropdownContentContainer side={index % 4 > 1 ? 'right' : 'left'}>
+        <DropdownItem
+          bold
+          align="center"
+          onClick={() => copyToClipboard(color.color, color.id)}
+        >
+          {color.color}
+        </DropdownItem>
+        <Divider />
+        <DropdownItem onClick={() => copyToClipboard(color.color, color.id)}>
+          Copy to clipbord
+        </DropdownItem>
+        <DropdownItem onClick={() => toggleFavorite(color.id)}>
+          {color.isFavorite ? 'Remove from ' : 'Add to '}Favorites
+        </DropdownItem>
+        <DropdownItem onClick={() => removeColor(color.id)}>
+          Remove color
+        </DropdownItem>
+        <DropdownItem
+          onClick={() =>
+            toggleTag(
+              color.id,
+              color.tags.length === 0 ? prompt('add tag') || '' : color.tags[0]
+            )
+          }
+        >
+          {color.tags.length === 0 ? 'Add' : `Remove "${color.tags[0]}"`} tag
+        </DropdownItem>
+      </DropdownContentContainer>
+    </DropdownContainer>
+  );
+};
 
 const arrowPeak = 22.5;
 
