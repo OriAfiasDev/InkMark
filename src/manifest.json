@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "permissions": ["contextMenus", "storage"],
   "name": "InkMark",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Bookmark manager for colors you've met online",
   "background": { "service_worker": "background.bundle.js" },
   "action": {
