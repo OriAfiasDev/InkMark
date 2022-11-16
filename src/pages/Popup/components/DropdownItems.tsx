@@ -38,13 +38,10 @@ export const DropdownItems: React.FC<DropdownItemsProps> = ({
     </DropdownItem>
     <DropdownItem
       onClick={() =>
-        toggleTag(
-          color.id,
-          color.tags.length === 0 ? prompt('add tag') || '' : color.tags[0]
-        )
+        toggleTag(color.id, color.tag ? color.tag : prompt('add tag') || '')
       }
     >
-      {color.tags.length === 0 ? 'Add' : `Remove "${color.tags[0]}"`} tag
+      {color.tag ? `Remove ${color.tag}` : 'Add '} tag
     </DropdownItem>
   </DropdownContentContainer>
 );
