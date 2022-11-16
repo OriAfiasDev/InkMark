@@ -1,12 +1,11 @@
 <p align='center'><img src="src/assets/img/icon-128.png" width="64"/></p>
-<div align='center'><h2 style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; -moz-background-clip: text; -moz-text-fill-color: transparent; background-size: 100%; background-repeat: repeat;     background-image: linear-gradient(45deg,#CA4246 16.666%, #E16541 16.666%, #E16541 33.333%, #F18F43 33.333%, #F18F43 50%, #8B9862 50%, #8B9862 66.666%, #476098 66.666%, #476098 83.333%, #A7489B 83.333%);">InkMark Chrome Extenesion</h2></div>
+<div align='center'><h2 style="color:rgb(178, 73, 248)">InkMark Chrome Extenesion</h2></div>
 
-<p align="center"><a rel="noreferrer noopener" href="https://chrome.google.com/webstore/detail/inkmark/bahigdoicpnhfdjkofiohommdakihpih?hl=en-US"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Add to Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white&color=E16541"></a>
+<p align="center"><a rel="noreferrer noopener" href="https://chrome.google.com/webstore/detail/inkmark/bahigdoicpnhfdjkofiohommdakihpih?hl=en-US"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Add to Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white&color=rgb(255, 28, 247)"></a>
 <br/>
 <p align='center'>
 InkMark is an <strong>open-source</strong> MIT-licensed <strong>browser extension</strong> designed to help you keep your colors lined up.<br/>InkMark will <strong>store</strong> and help you manage colors you've gathered from across the web, mark them as <strong>favorites</strong>, <strong>order</strong> them by usage or type, and help you <strong>tag</strong> them as you wish.
 </p>
-
 
 ## Installing and Running
 
