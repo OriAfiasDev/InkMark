@@ -1,5 +1,5 @@
 <p align='center'><img src="src/assets/img/icon-128.png" width="64"/></p>
-<div align='center'><h2 style="color:rgb(178, 73, 248)">InkMark Chrome Extenesion</h2></div>
+<h2 align='center'><strong>InkMark</strong></h2>
 
 <p align="center"><a rel="noreferrer noopener" href="https://chrome.google.com/webstore/detail/inkmark/bahigdoicpnhfdjkofiohommdakihpih?hl=en-US"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Add to Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white&color=rgb(255, 28, 247)"></a>
 <br/>
