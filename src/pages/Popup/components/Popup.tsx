@@ -7,8 +7,7 @@ import { Section } from './Section';
 import { useColors } from '../context/ColorContext';
 
 const Popup = () => {
-  const { colors, favorites, gradients, mostCommon, solids, tags } =
-    useColors();
+  const { colors, favorites, mostCommon, tags } = useColors();
 
   return (
     <PopupContainer>
@@ -30,13 +29,6 @@ const Popup = () => {
         <ColorList colors={colors} />
       </Section>
 
-      <Section title="only solids">
-        <ColorList colors={solids} />
-      </Section>
-
-      <Section title="only gradients">
-        <ColorList colors={gradients} />
-      </Section>
       <Section title="add color">
         <Picker />
       </Section>

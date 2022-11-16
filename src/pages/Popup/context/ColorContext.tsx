@@ -15,8 +15,6 @@ interface ColorContextProps {
   colors: IColor[];
   favorites: IColor[];
   mostCommon: IColor[];
-  solids: IColor[];
-  gradients: IColor[];
   tags: Tags;
 }
 
@@ -24,8 +22,6 @@ const initialContext: ColorContextProps = {
   colors: [],
   favorites: [],
   mostCommon: [],
-  solids: [],
-  gradients: [],
   tags: {},
 };
 
@@ -51,16 +47,6 @@ const ColorProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
     [colors]
   );
 
-  const solids = useMemo(
-    () => colors.filter((color) => color.type === 'solid'),
-    [colors]
-  );
-
-  const gradients = useMemo(
-    () => colors.filter((color) => color.type === 'gradient'),
-    [colors]
-  );
-
   const tags = useMemo(() => {
     return colors.reduce<Tags>((tags, currentColor) => {
       currentColor.tags.forEach((tag) => {
@@ -72,9 +58,7 @@ const ColorProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
   }, [colors]);
 
   return (
-    <ColorContext.Provider
-      value={{ colors, favorites, mostCommon, solids, gradients, tags }}
-    >
+    <ColorContext.Provider value={{ colors, favorites, mostCommon, tags }}>
       {children}
     </ColorContext.Provider>
   );
