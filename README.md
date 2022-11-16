@@ -1,10 +1,11 @@
 <p align='center'><img src="src/assets/img/icon-128.png" width="64"/></p>
 <h2 align='center'><strong>InkMark</strong></h2>
+
+<p align="center"><a rel="noreferrer noopener" href="https://chrome.google.com/webstore/detail/inkmark/bahigdoicpnhfdjkofiohommdakihpih?hl=en-US"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Add to Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white&color=rgb(255, 28, 247)"></a>
 <br/>
 <p align='center'>
 InkMark is an <strong>open-source</strong> MIT-licensed <strong>browser extension</strong> designed to help you keep your colors lined up.<br/>InkMark will <strong>store</strong> and help you manage colors you've gathered from across the web, mark them as <strong>favorites</strong>, <strong>order</strong> them by usage or type, and help you <strong>tag</strong> them as you wish.
 </p>
-
 
 ## Installing and Running
 
