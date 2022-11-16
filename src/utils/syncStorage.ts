@@ -10,7 +10,7 @@ export const addNewColor = (color: string) => {
     isFavorite: false,
     type: color.includes('linear-gradient') ? 'gradient' : 'solid',
     count: 0,
-    tags: [],
+    tag: '',
   };
 
   chrome.storage.sync.get({ savedColors: [] }, ({ savedColors }) => {
@@ -70,12 +70,7 @@ export const toggleTag = (id: string, tag: string) => {
     chrome.storage.sync.set({
       savedColors: savedColors.map((color: IColor) =>
         color.id === id
-          ? {
-              ...color,
-              tags: color.tags.includes(tag)
-                ? color.tags.filter((t) => t !== tag)
-                : [...color.tags, tag],
-            }
+          ? { ...color, tag: color.tag === tag ? '' : tag }
           : color
       ),
     });
