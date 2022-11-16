@@ -49,11 +49,15 @@ const ColorProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
 
   const tags = useMemo(() => {
     return colors.reduce<Tags>((tags, currentColor) => {
-      currentColor.tags.forEach((tag) => {
-        if (!tags[tag]) tags[tag] = [];
-        tags[tag].push(currentColor);
-      });
-      return tags;
+      const colorTag = currentColor.tag.toLowerCase();
+      if (!colorTag) return tags;
+
+      if (!tags[colorTag]) tags[colorTag] = [];
+
+      return {
+        ...tags,
+        [colorTag]: [...tags[colorTag], currentColor],
+      };
     }, {});
   }, [colors]);
 
