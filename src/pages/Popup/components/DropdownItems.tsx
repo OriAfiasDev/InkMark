@@ -46,28 +46,30 @@ export const DropdownItems: React.FC<DropdownItemsProps> = ({
   </DropdownContentContainer>
 );
 
-const arrowPeak = 22.5;
-
 export const DropdownContentContainer = styled.div<{ side: 'left' | 'right' }>`
   display: none;
   position: absolute;
   background-color: ${colorScheme.dark.backgroundSecondary};
   border-radius: 8px;
   top: 0;
-  ${({ side }) => side}: 75px;
+  ${({ side }) => side}: 70px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 
-  clip-path: ${({ side }) => `polygon(
-          ${side === 'left' ? '4%' : '96%'} ${arrowPeak - 7}%,
-          ${side === 'left' ? '4%' : '96%'} 0,
-          ${side === 'left' ? '100%' : '0%'} 0,
-          ${side === 'left' ? '100%' : '0%'} 100%,
-          ${side === 'left' ? '4%' : '96%'} 100%,
-          ${side === 'left' ? '4%' : '96%'} ${arrowPeak + 7}%,
-          ${side === 'left' ? '0%' : '100%'} ${arrowPeak}%
-        )`};
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid ${colorScheme.dark.backgroundSecondary};
+    position: absolute;
+    top: -115px;
+    bottom: 0;
+    margin: auto 0;
+    left: -8px;
+  }
 `;
 
 const DropdownItem = styled.p<{
