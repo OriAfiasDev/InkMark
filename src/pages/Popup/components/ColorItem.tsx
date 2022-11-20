@@ -24,8 +24,6 @@ export const ColorItem: React.FC<PropsWithChildren<ColorItemProps>> = ({
 const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
-  padding: 10px;
-  margin: -10px;
 
   &:hover {
     & ${DropdownContentContainer} {
