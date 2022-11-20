@@ -46,8 +46,6 @@ export const DropdownItems: React.FC<DropdownItemsProps> = ({
   </DropdownContentContainer>
 );
 
-const arrowPeak = 22.5;
-
 export const DropdownContentContainer = styled.div<{ side: 'left' | 'right' }>`
   display: none;
   position: absolute;
@@ -58,16 +56,6 @@ export const DropdownContentContainer = styled.div<{ side: 'left' | 'right' }>`
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-
-  clip-path: ${({ side }) => `polygon(
-          ${side === 'left' ? '4%' : '96%'} ${arrowPeak - 7}%,
-          ${side === 'left' ? '4%' : '96%'} 0,
-          ${side === 'left' ? '100%' : '0%'} 0,
-          ${side === 'left' ? '100%' : '0%'} 100%,
-          ${side === 'left' ? '4%' : '96%'} 100%,
-          ${side === 'left' ? '4%' : '96%'} ${arrowPeak + 7}%,
-          ${side === 'left' ? '0%' : '100%'} ${arrowPeak}%
-        )`};
 `;
 
 const DropdownItem = styled.p<{
