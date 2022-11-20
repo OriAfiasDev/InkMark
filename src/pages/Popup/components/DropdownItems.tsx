@@ -52,7 +52,7 @@ export const DropdownContentContainer = styled.div<{ side: 'left' | 'right' }>`
   background-color: ${colorScheme.dark.backgroundSecondary};
   border-radius: 8px;
   top: 0;
-  ${({ side }) => side}: 75px;
+  ${({ side }) => side}: 60px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
